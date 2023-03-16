@@ -11,22 +11,22 @@
     var day = "";
 
     if(currentday === 6){
-      day = "Saturday.";
+      day = "Saturday";
     }
     else if (currentday === 5) {
-      day = "Friday.";
+      day = "Friday";
     } else if (currentday === 4) {
-      day = "Thursday.";
+      day = "Thursday";
     }
     else if (currentday === 3) {
-      day = "Wednesday.";
+      day = "Wednesday";
     }  else if (currentday === 2) {
-      day = "Tuesday.";
+      day = "Tuesday";
       }
     else if (currentday === 1) {
-      day = "Monday.";
+      day = "Monday";
     }     else{
-        day = "Sunday.";
+        day = "Sunday";
       }
       res.render('list',{kindOfDay: day});
   })
