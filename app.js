@@ -2,35 +2,28 @@
   const bodyParser = require("body-parser");
 
   const app = express();
-
+    var items =["Buy food","Cook food"];
+  app.use(bodyParser.urlencoded({extended:true}))
   app.set('view engine', 'ejs')
 
   app.get('/',function(req,res){
     var today = new Date();
-    var currentday = today.getDay()  ;
-    var day = "";
+    var options = {
+      weekday: "long",
+      day : "numeric",
+      month: "long"
+    }
+      var day = today.toLocaleDateString("en-US",options);
 
-    if(currentday === 6){
-      day = "Saturday";
-    }
-    else if (currentday === 5) {
-      day = "Friday";
-    } else if (currentday === 4) {
-      day = "Thursday";
-    }
-    else if (currentday === 3) {
-      day = "Wednesday";
-    }  else if (currentday === 2) {
-      day = "Tuesday";
-      }
-    else if (currentday === 1) {
-      day = "Monday";
-    }     else{
-        day = "Sunday";
-      }
-      res.render('list',{kindOfDay: day});
+      res.render('list',{kindOfDay: day,newListItems: items});
+      // res.render('list',{});
   })
-
+app.post('/',function(req,res){
+   var item = req.body.newItem;
+   items.push(item);
+  res.redirect('/');
+  // console.log(item);
+})
 
   app.listen(3000,function(){
     console.log('Server listening at port 3000');
